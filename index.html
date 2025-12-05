@@ -21,7 +21,7 @@
 
         .banner-container {
             width: 100%;
-            min-height: 500px;
+            min-height: 600px;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -95,7 +95,7 @@
         }
 
         .title-card {
-            width: 750px;
+            width: 550px;
             height: 140px;
             transform-style: preserve-3d;
             transition: transform 0.8s ease;
@@ -116,7 +116,7 @@
 
         .title-front h1, .title-back h1 {
             font-family: 'Stranger Things', sans-serif;
-            font-size: 5rem;
+            font-size: 40px;
             letter-spacing: 6px;
             line-height: 1;
         }
@@ -204,13 +204,21 @@ function spawnRadiation() {
     const icon = document.createElement('i');
     icon.classList.add('fas', 'fa-radiation', 'radiation-icon');
 
-    // random position
-    const left = Math.random() * 80 + 10;
-    const top = Math.random() * 70 + 10;
+    // Pick left or right side only
+    const side = Math.random() < 0.5 ? "left" : "right";
+
+    let left;
+    if (side === "left") {
+        left = Math.random() * 25 + 5;   // 5% → 30%
+    } else {
+        left = Math.random() * 25 + 70;  // 70% → 95%
+    }
+
+    const top = Math.random() * 70 + 10; // random vertical pos
 
     icon.style.left = left + "%";
     icon.style.top = top + "%";
-    icon.style.opacity = 0.4;
+    icon.style.opacity = 0.5;
 
     container.appendChild(icon);
 
@@ -220,6 +228,7 @@ function spawnRadiation() {
         setTimeout(() => icon.remove(), 500);
     }, 2000);
 }
+
 
 // Show 1 radiation icon every 2 seconds
 setInterval(spawnRadiation, 3000);
