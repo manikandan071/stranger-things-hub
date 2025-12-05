@@ -3,299 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stranger Things Hub - SharePoint</title>
+    <title>The Mind Lair Breach - Stranger Things Banner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --stranger-red: #e63946;
-            --upside-down-blue: #1d3557;
-            --hawkins-purple: #6a4c93;
-            --lightning-blue: #a8dadc;
-            --dark-bg: #0a0a0a;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            color: #fff;
-            min-height: 600px;
-            padding: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            border: 3px solid var(--stranger-red);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(230, 57, 70, 0.4);
-            background: rgba(18, 18, 18, 0.95);
-        }
-        
-        .header {
-            background: linear-gradient(90deg, #1d3557 0%, #8b0000 100%);
-            padding: 25px;
-            text-align: center;
+        .banner-container {
+            width: 100%;
+            min-height: 400px;
             position: relative;
             overflow: hidden;
-        }
-        
-        .header h1 {
-            font-family: 'Impact', sans-serif;
-            font-size: 2.8rem;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            color: white;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 25px;
-        }
-        
-        .card {
-            background: rgba(30, 30, 40, 0.8);
-            border-radius: 8px;
-            padding: 20px;
-            border-left: 5px solid var(--stranger-red);
-            transition: transform 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            border-left-color: var(--lightning-blue);
-        }
-        
-        .card h2 {
-            color: var(--lightning-blue);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(168, 218, 220, 0.3);
-        }
-        
-        .character {
-            padding: 10px;
-            margin: 8px 0;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
         }
         
-        .character i {
-            color: var(--stranger-red);
+        /* Main background with Upside Down portal effect */
+        .banner-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(29, 53, 87, 0.4) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 30%, #16213e 70%, #0f3460 100%);
+            z-index: 1;
         }
         
-        .alert {
-            background: rgba(139, 0, 0, 0.2);
-            border: 1px solid var(--stranger-red);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        /* Portal animation effect */
+        .portal {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 218, 220, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            animation: portalPulse 8s infinite alternate;
         }
         
-        .alert i {
-            color: var(--stranger-red);
-            font-size: 1.5rem;
+        @keyframes portalPulse {
+            0% {
+                box-shadow: 0 0 100px rgba(168, 218, 220, 0.1),
+                            0 0 200px rgba(168, 218, 220, 0.05),
+                            inset 0 0 100px rgba(168, 218, 220, 0.05);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                box-shadow: 0 0 150px rgba(168, 218, 220, 0.2),
+                            0 0 300px rgba(168, 218, 220, 0.1),
+                            inset 0 0 150px rgba(168, 218, 220, 0.1);
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
         
-        .button {
-            background: linear-gradient(90deg, var(--stranger-red), var(--hawkins-purple));
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
+        /* Lightning effects */
+        .lightning {
+            position: absolute;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(to bottom, transparent, rgba(168, 218, 220, 0.8), transparent);
+            animation: lightningFlash 10s infinite;
+            z-index: 3;
         }
         
-        .button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
+        .lightning:nth-child(1) {
+            left: 20%;
+            animation-delay: 2s;
         }
         
-        .footer {
-            background: rgba(10, 10, 10, 0.9);
-            padding: 20px;
+        .lightning:nth-child(2) {
+            left: 45%;
+            animation-delay: 5s;
+        }
+        
+        .lightning:nth-child(3) {
+            left: 75%;
+            animation-delay: 7s;
+        }
+        
+        @keyframes lightningFlash {
+            0%, 100% { height: 0; opacity: 0; }
+            1% { height: 0; opacity: 0; }
+            2% { height: 150px; opacity: 1; }
+            3% { height: 150px; opacity: 0; }
+            4% { height: 120px; opacity: 1; }
+            5% { height: 120px; opacity: 0; }
+        }
+        
+        /* Floating particles (like spores from Upside Down) */
+        .particle {
+            position: absolute;
+            background-color: rgba(168, 218, 220, 0.6);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Content styling */
+        .banner-content {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            border-top: 2px solid var(--stranger-red);
-            margin-top: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            width: 100%;
         }
         
+        .company-name-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+        
+        .company-name {
+            font-family: 'Stranger Things', 'Impact', 'Arial Black', sans-serif;
+            font-size: 5.5rem;
+            letter-spacing: 8px;
+            background: linear-gradient(90deg, 
+                #8b0000 0%, 
+                #b22222 25%, 
+                #ff0000 50%, 
+                #b22222 75%, 
+                #8b0000 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+            position: relative;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        
+        /* Normal state subtitle */
+        .subtitle {
+            font-size: 1.8rem;
+            color: rgba(168, 218, 220, 0.9);
+            margin-top: 20px;
+            letter-spacing: 3px;
+            transition: all 0.5s ease;
+        }
+        
+        /* Hidden "upside down" text */
+        .upside-down-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Stranger Things', 'Impact', 'Arial Black', sans-serif;
+            font-size: 5.5rem;
+            letter-spacing: 8px;
+            background: linear-gradient(90deg, 
+                #1d3557 0%, 
+                #457b9d 25%, 
+                #a8dadc 50%, 
+                #457b9d 75%, 
+                #1d3557 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(168, 218, 220, 0.5);
+            opacity: 0;
+            transform: rotateX(180deg) scaleY(-1);
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+        
+        /* Hover effects */
+        .company-name-container:hover .company-name {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        .company-name-container:hover .upside-down-text {
+            opacity: 1;
+            transform: rotateX(0) scaleY(1);
+        }
+        
+        .company-name-container:hover .subtitle {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* Tagline and info */
+        .tagline {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .info-card {
+            background: rgba(30, 30, 40, 0.7);
+            border-radius: 10px;
+            padding: 25px;
+            border: 2px solid rgba(139, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .info-card:hover {
+            border-color: rgba(168, 218, 220, 0.8);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(168, 218, 220, 0.2);
+        }
+        
+        .info-card h3 {
+            color: #a8dadc;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card h3 i {
+            color: #8b0000;
+        }
+        
+        .info-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Stranger Things font */
+        @font-face {
+            font-family: 'Stranger Things';
+            src: url('https://fonts.cdnfonts.com/s/21516/StrangerThings-Regular.woff') format('woff');
+        }
+        
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .company-name {
+                font-size: 3.5rem;
+                letter-spacing: 4px;
             }
             
-            .content {
+            .upside-down-text {
+                font-size: 3.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+                padding: 0 20px;
+            }
+            
+            .portal {
+                width: 400px;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .company-name {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .upside-down-text {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .info-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-ghost"></i> STRANGER THINGS HUB</h1>
-            <p>Hawkins National Laboratory • Classified Portal</p>
-        </div>
+    <div class="banner-container">
+        <!-- Background elements -->
+        <div class="banner-bg"></div>
+        <div class="portal"></div>
+        <div class="lightning"></div>
+        <div class="lightning"></div>
+        <div class="lightning"></div>
         
-        <div class="content">
-            <div class="card">
-                <h2><i class="fas fa-users"></i> Main Characters</h2>
-                <div class="character">
-                    <i class="fas fa-female"></i>
-                    <div>
-                        <strong>Eleven</strong> - Telekinetic powerhouse
-                    </div>
-                </div>
-                <div class="character">
-                    <i class="fas fa-bicycle"></i>
-                    <div>
-                        <strong>Mike Wheeler</strong> - The Heart of the Party
-                    </div>
-                </div>
-                <div class="character">
-                    <i class="fas fa-walkie-talkie"></i>
-                    <div>
-                        <strong>Dustin Henderson</strong> - Tech genius
-                    </div>
-                </div>
-                <div class="character">
-                    <i class="fas fa-shield-alt"></i>
-                    <div>
-                        <strong>Jim Hopper</strong> - Hawkins Chief of Police
-                    </div>
-                </div>
+        <!-- Particles will be generated by JS -->
+        
+        <!-- Main content -->
+        <div class="banner-content">
+            <div class="company-name-container">
+                <h1 class="company-name">THE MIND LAIR BREACH</h1>
+                <h1 class="upside-down-text">THE UPSIDE DOWN</h1>
+                <p class="subtitle">Hawkins Division • Established 1983</p>
             </div>
             
-            <div class="card">
-                <h2><i class="fas fa-calendar-alt"></i> Hawkins Timeline</h2>
-                <div class="character">
-                    <i class="fas fa-calendar-day"></i>
-                    <div><strong>1983</strong>: Will Byers disappears</div>
-                </div>
-                <div class="character">
-                    <i class="fas fa-door-open"></i>
-                    <div><strong>1984</strong>: Gate to Upside Down opens</div>
-                </div>
-                <div class="character">
-                    <i class="fas fa-shopping-mall"></i>
-                    <div><strong>1985</strong>: Battle of Starcourt Mall</div>
-                </div>
-                <div class="character">
-                    <i class="fas fa-skull"></i>
-                    <div><strong>1986</strong>: Vecna's curse begins</div>
-                </div>
-                
-                <div class="alert">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <div>
-                        <strong>Season 5</strong> - The Final Chapter coming soon
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2><i class="fas fa-vial"></i> Lab Operations</h2>
-                <p>Hawkins Lab is currently monitoring Upside Down activity in Sector 7. All personnel must maintain Level 4 clearance.</p>
-                
-                <button class="button" onclick="accessLab()">
-                    <i class="fas fa-lock"></i> Access Lab Files
-                </button>
-                
-                <div class="alert" style="margin-top: 20px;">
-                    <i class="fas fa-radiation"></i>
-                    <div>
-                        <strong>Warning:</strong> Demogorgon sightings reported
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>Hawkins National Laboratory • Department of Energy • CLASSIFIED</p>
-            <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 10px;">
-                <i class="fas fa-exclamation-circle"></i> For authorized personnel only
+            <p class="tagline">
+                <i class="fas fa-exclamation-triangle"></i>
+                Specializing in interdimensional research, psychic phenomena containment, and Upside Down breach management. 
+                Protecting Hawkins from threats beyond our reality since 1983.
+                <i class="fas fa-radiation"></i>
             </p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-vial"></i> Research & Development</h3>
+                    <p>Pioneering studies in telekinesis, clairvoyance, and interdimensional travel. Our lab continues Dr. Brenner's work.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-shield-alt"></i> Containment Division</h3>
+                    <p>Specialized teams equipped to handle Demogorgon encounters, Mind Flayer manifestations, and Vecna-related incidents.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-satellite-dish"></i> Surveillance Network</h3>
+                    <p>Monitoring Hawkins for electromagnetic disturbances, temperature drops, and other signs of Upside Down activity.</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function accessLab() {
-            const button = event.target.closest('.button');
-            const originalHTML = button.innerHTML;
+        // Generate floating particles
+        function createParticles() {
+            const container = document.querySelector('.banner-container');
+            const particleCount = 30;
             
-            // Show loading state
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Establishing secure connection...';
-            button.disabled = true;
-            
-            // Simulate loading
-            setTimeout(() => {
-                button.innerHTML = '<i class="fas fa-check"></i> ACCESS GRANTED';
-                button.style.background = 'linear-gradient(90deg, #4CAF50, #2E7D32)';
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
                 
-                // Show alert
-                alert("🔓 ACCESS TO LAB FILES GRANTED\n\nWelcome, Dr. Brenner\nSecurity Level: CLASSIFIED\n\nUpside Down Activity: HIGH\nRecommendation: Initiate Protocol Nova");
+                // Random properties
+                const size = Math.random() * 6 + 2;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 20 + 15;
+                const animationDelay = Math.random() * 10;
                 
-                // Reset after 3 seconds
-                setTimeout(() => {
-                    button.innerHTML = originalHTML;
-                    button.disabled = false;
-                    button.style.background = 'linear-gradient(90deg, var(--stranger-red), var(--hawkins-purple))';
-                }, 3000);
-            }, 1500);
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                
+                // Add some variation to particle color
+                if (Math.random() > 0.7) {
+                    particle.style.backgroundColor = 'rgba(139, 0, 0, 0.6)';
+                } else if (Math.random() > 0.5) {
+                    particle.style.backgroundColor = 'rgba(29, 53, 87, 0.6)';
+                }
+                
+                container.appendChild(particle);
+            }
         }
         
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                // Add staggered entrance animation
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.5s, transform 0.5s';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 200);
-            });
+        // Add subtle hover effect to entire banner
+        const bannerContainer = document.querySelector('.banner-container');
+        
+        bannerContainer.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
             
-            // Add flickering effect to header
-            const header = document.querySelector('.header h1');
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    header.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.8)';
-                    setTimeout(() => {
-                        header.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.5)';
-                    }, 100);
-                }
-            }, 3000);
+            const portal = document.querySelector('.portal');
+            portal.style.transform = `translate(-50%, -50%) translate(${x * 20 - 10}px, ${y * 20 - 10}px)`;
         });
+        
+        // Add click effect on company name
+        const companyName = document.querySelector('.company-name-container');
+        companyName.addEventListener('click', () => {
+            // Add a flash effect
+            const flash = document.createElement('div');
+            flash.style.position = 'absolute';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100%';
+            flash.style.height = '100%';
+            flash.style.background = 'radial-gradient(circle, rgba(168,218,220,0.5) 0%, transparent 70%)';
+            flash.style.zIndex = '5';
+            flash.style.animation = 'fadeOut 1s forwards';
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    0% { opacity: 1; }
+                    100% { opacity: 0; }
+                }
+            `;
+            
+            document.head.appendChild(style);
+            bannerContainer.appendChild(flash);
+            
+            // Remove flash after animation
+            setTimeout(() => {
+                flash.remove();
+            }, 1000);
+        });
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Add additional subtitle for mobile
+            if (window.innerWidth <= 768) {
+                const subtitle = document.querySelector('.subtitle');
+                subtitle.textContent = 'Hawkins Division • Tap to reveal';
+            }
+        });
+        
+        // Add some random lightning flashes
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                const lightning = document.querySelector('.lightning:nth-child(' + Math.floor(Math.random() * 3 + 1) + ')');
+                lightning.style.animation = 'none';
+                setTimeout(() => {
+                    lightning.style.animation = 'lightningFlash 10s infinite';
+                }, 10);
+            }
+        }, 3000);
     </script>
 </body>
 </html>
